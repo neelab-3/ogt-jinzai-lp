@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>お問い合わせありがとうございました - OGT！人材</title>
+    <meta
+      name="description"
+      content="お問い合わせを受け付けました。1営業日以内にご返信いたします。"
+    />
+    <meta name="robots" content="noindex, nofollow" />
+
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-VGLK5ZNC4B"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-VGLK5ZNC4B");
+    </script>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css" />
+
+    <style>
+      .thanks-container {
+        min-height: 80vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--bg-light);
+      }
+
+      .thanks-content {
+        background: var(--bg-white);
+        padding: 4rem 3rem;
+        border-radius: 16px;
+        box-shadow: 0 6px 25px var(--shadow);
+        text-align: center;
+        max-width: 600px;
+        margin: 2rem;
+      }
+
+      .success-icon {
+        width: 80px;
+        height: 80px;
+        background: var(--gradient-primary);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 2rem;
+        color: white;
+        font-size: 2rem;
+      }
+
+      .thanks-title {
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--primary-color);
+        margin-bottom: 1.5rem;
+      }
+
+      .thanks-message {
+        font-size: 1.1rem;
+        color: var(--text-medium);
+        line-height: 1.8;
+        margin-bottom: 2.5rem;
+      }
+
+      .next-steps {
+        background: var(--bg-light);
+        padding: 2rem;
+        border-radius: 12px;
+        margin: 2rem 0;
+        text-align: left;
+      }
+
+      .next-steps h3 {
+        color: var(--primary-color);
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        text-align: center;
+      }
+
+      .next-steps ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      .next-steps li {
+        padding: 0.75rem 0;
+        display: flex;
+        align-items: flex-start;
+        border-bottom: 1px solid rgba(44, 95, 65, 0.1);
+      }
+
+      .next-steps li:last-child {
+        border-bottom: none;
+      }
+
+      .next-steps li::before {
+        content: "✓";
+        color: var(--success);
+        font-weight: bold;
+        margin-right: 0.75rem;
+        font-size: 1.1rem;
+        flex-shrink: 0;
+        margin-top: 0.1rem;
+      }
+
+      .contact-info {
+        background: var(--bg-light);
+        padding: 1.5rem;
+        border-radius: 8px;
+        margin: 2rem 0;
+        border-left: 4px solid var(--primary-color);
+      }
+
+      .contact-info h4 {
+        color: var(--primary-color);
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+      }
+
+      .contact-info p {
+        margin-bottom: 0.5rem;
+        font-size: 0.95rem;
+      }
+
+      .buttons-container {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 2rem;
+      }
+
+      @media (max-width: 768px) {
+        .thanks-content {
+          padding: 3rem 2rem;
+          margin: 1rem;
+        }
+
+        .thanks-title {
+          font-size: 1.75rem;
+        }
+
+        .buttons-container {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .btn {
+          min-width: 200px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .thanks-content {
+          padding: 2rem 1.5rem;
+        }
+
+        .thanks-title {
+          font-size: 1.5rem;
+        }
+
+        .thanks-message {
+          font-size: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Skip Link for Accessibility -->
+    <a href="#main-content" class="skip-link">メインコンテンツへスキップ</a>
+
+    <!-- Header -->
+    <header class="header" role="banner">
+      <div class="container">
+        <div class="header-content">
+          <a href="index.html" class="logo" aria-label="OGT！人材 ホーム"
+            >OGT！人材</a
+          >
+          <nav class="nav" role="navigation" aria-label="メインナビゲーション">
+            <ul>
+              <li><a href="index.html#issues">採用課題</a></li>
+              <li><a href="index.html#talent-categories">人材カテゴリー</a></li>
+              <li><a href="index.html#differentiation">差別化ポイント</a></li>
+              <li><a href="index.html#contact">お問い合わせ</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content" role="main">
+      <div class="thanks-container">
+        <div class="thanks-content">
+          <div class="success-icon" aria-hidden="true">✓</div>
+
+          <h1 class="thanks-title">お問い合わせありがとうございました</h1>
+
+          <div class="thanks-message">
+            <p>
+              この度は、OGT！人材にお問い合わせいただき、誠にありがとうございます。
+            </p>
+            <p>
+              いただいたご相談内容を確認の上、<strong>1営業日以内</strong>に担当者よりご連絡いたします。
+            </p>
+          </div>
+
+          <div class="next-steps">
+            <h3>今後の流れ</h3>
+            <ul>
+              <li>お問い合わせ内容の確認・分析</li>
+              <li>採用課題に関する初回ヒアリング（お電話またはオンライン）</li>
+              <li>貴社の状況に最適なソリューションのご提案</li>
+              <li>4つの人材カテゴリーからの候補者ご紹介</li>
+              <li>採用プロセス全体のサポート開始</li>
+            </ul>
+          </div>
+
+          <div class="contact-info">
+            <h4>緊急のご連絡について</h4>
+            <p>お急ぎの案件がございましたら、以下までお電話ください：</p>
+            <p><strong>採用コンサルティング部：</strong> 03-XXXX-XXXX</p>
+            <p><strong>受付時間：</strong> 平日 9:00-18:00</p>
+          </div>
+
+          <div class="buttons-container">
+            <a href="index.html" class="btn btn-primary">トップページに戻る</a>
+            <a href="index.html#talent-categories" class="btn btn-outline"
+              >人材カテゴリーを見る</a
+            >
+          </div>
+
+          <p
+            style="
+              font-size: 0.875rem;
+              color: var(--text-light);
+              margin-top: 2rem;
+            "
+          >
+            ※
+            土日祝日にいただいたお問い合わせは、翌営業日以降のご回答となります。<br />
+            ※
+            お問い合わせ内容によっては、回答にお時間をいただく場合がございます。
+          </p>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+      <div class="container">
+        <p>
+          &copy; 2025 OGT！人材. All rights reserved. |
+          プロフェッショナルな人材採用のパートナー
+        </p>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+      // Professional thank you page enhancements
+      document.addEventListener("DOMContentLoaded", function () {
+        // Add smooth entrance animation
+        const thanksContent = document.querySelector(".thanks-content");
+        if (thanksContent) {
+          thanksContent.style.opacity = "0";
+          thanksContent.style.transform = "translateY(30px)";
+          thanksContent.style.transition =
+            "opacity 0.8s ease, transform 0.8s ease";
+
+          setTimeout(() => {
+            thanksContent.style.opacity = "1";
+            thanksContent.style.transform = "translateY(0)";
+          }, 100);
+        }
+
+        // Add success icon animation
+        const successIcon = document.querySelector(".success-icon");
+        if (successIcon) {
+          setTimeout(() => {
+            successIcon.style.animation = "pulse 0.6s ease-in-out";
+          }, 500);
+        }
+
+        // Professional button hover effects
+        const buttons = document.querySelectorAll(".btn");
+        buttons.forEach((button) => {
+          button.addEventListener("mouseenter", function () {
+            this.style.transition = "all 0.3s ease";
+          });
+        });
+
+        // Track page view for analytics (if implemented)
+        if (typeof gtag !== "undefined") {
+          gtag("event", "page_view", {
+            page_title: "Thank You Page",
+            page_location: window.location.href,
+          });
+
+          gtag("event", "conversion", {
+            send_to: "CONVERSION_ID",
+          });
+        }
+
+        // Accessibility: Announce completion to screen readers
+        const announcement = document.createElement("div");
+        announcement.setAttribute("aria-live", "polite");
+        announcement.setAttribute("aria-atomic", "true");
+        announcement.className = "sr-only";
+        announcement.textContent =
+          "お問い合わせが正常に送信されました。ありがとうございます。";
+        document.body.appendChild(announcement);
+      });
+
+      // CSS animation keyframes
+      const style = document.createElement("style");
+      style.textContent = `
+            @keyframes pulse {
+                0% {
+                    transform: scale(1);
+                }
+                50% {
+                    transform: scale(1.1);
+                }
+                100% {
+                    transform: scale(1);
+                }
+            }
+        `;
+      document.head.appendChild(style);
+    </script>
+  </body>
+</html>
