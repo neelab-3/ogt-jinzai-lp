@@ -2,6 +2,11 @@
 // プロフェッショナルで信頼感のあるインタラクション
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Initialize GSAP if available
+    if (typeof gsap !== 'undefined') {
+        initializeAdvancedHoverEffects();
+    }
+    
     // Mobile Navigation - Hamburger Menu
     initMobileNavigation();
     
@@ -432,4 +437,57 @@ function closeMobileNav() {
     
     // Restore body scrolling
     document.body.style.overflow = '';
+}
+
+// Advanced 3D Hover Effects with GSAP
+function initializeAdvancedHoverEffects() {
+    const categoryCards = document.querySelectorAll('.category-card');
+    
+    categoryCards.forEach(card => {
+        // Initial state
+        gsap.set(card, {
+            transformPerspective: 1000,
+            transformStyle: "preserve-3d"
+        });
+        
+        // Mouse enter animation
+        card.addEventListener('mouseenter', () => {
+            gsap.to(card, {
+                duration: 0.5,
+                ease: 'power2.out',
+                scale: 1.02
+            });
+        });
+        
+        // Mouse leave animation
+        card.addEventListener('mouseleave', () => {
+            gsap.to(card, {
+                duration: 0.5,
+                ease: 'power2.out',
+                rotationX: 0,
+                rotationY: 0,
+                scale: 1
+            });
+        });
+        
+        // Mouse tracking for 3D effect
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            // Calculate rotation based on mouse position
+            const rotateX = ((y - centerY) / centerY) * -5; // Reduced rotation for subtlety
+            const rotateY = ((x - centerX) / centerX) * 5;
+            
+            gsap.to(card, {
+                duration: 0.3,
+                ease: 'power2.out',
+                rotationX: rotateX,
+                rotationY: rotateY
+            });
+        });
+    });
 }
