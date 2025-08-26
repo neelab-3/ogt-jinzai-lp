@@ -347,20 +347,25 @@ body {
 }
 
 .category-card h3 {
-  font-size: 1.4rem;
+  font-size: 1.8rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
   color: var(--text-dark);
 }
 
 .category-card .subtitle {
-  font-size: 0.9rem;
+  font-size: 1.3rem;
   color: var(--text-medium);
   margin-bottom: 1.5rem;
 }
 
 .category-content {
   padding: 0 2rem 2rem;
+}
+
+.category-content p {
+  font-size: 1.25rem;
+  line-height: 1.7;
 }
 
 
@@ -392,8 +397,8 @@ body {
 }
 
 .hover-content h4 {
-  font-size: 1.5rem;
-  margin-bottom: 1.5rem;
+  font-size: 1.85rem;
+  margin-bottom: 1.75rem;
   color: white;
   font-weight: 700;
 }
@@ -401,16 +406,17 @@ body {
 .hover-content ul {
   list-style: none;
   text-align: left;
-  max-width: 300px;
+  max-width: 350px;
   margin: 0 auto;
 }
 
 .hover-content li {
-  padding: 0.5rem 0;
-  padding-left: 1.5rem;
+  padding: 0.65rem 0;
+  padding-left: 2rem;
   position: relative;
-  color: rgba(255, 255, 255, 0.9);
-  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.95);
+  line-height: 1.7;
+  font-size: 1.15rem;
 }
 
 .hover-content li::before {
@@ -675,6 +681,15 @@ textarea.form-control {
   .category-content p {
     line-height: 1.7;
     text-align: left;
+    font-size: 1rem;
+  }
+  
+  .category-card h3 {
+    font-size: 1.5rem;
+  }
+  
+  .category-card .subtitle {
+    font-size: 0.95rem;
   }
   
   .comparison-table {
@@ -852,6 +867,15 @@ textarea.form-control {
   .category-content p {
     line-height: 1.8;
     text-align: left;
+    font-size: 0.95rem;
+  }
+  
+  .category-card h3 {
+    font-size: 1.35rem;
+  }
+  
+  .category-card .subtitle {
+    font-size: 0.9rem;
   }
   
   /* Simplify hover overlay on mobile */
@@ -864,12 +888,12 @@ textarea.form-control {
   }
   
   .hover-content h4 {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
   }
-  
+
   .hover-content li {
-    font-size: 0.9rem;
-    padding: 0.4rem 0;
+    font-size: 1.05rem;
+    padding: 0.5rem 0;
   }
   
   .form-container {
