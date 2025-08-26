@@ -175,6 +175,18 @@
         }
       }
 
+      .contact-detail {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        justify-content: center;
+        text-align: center;
+      }
+
+      .phone-number {
+        white-space: nowrap;
+      }
+
       @media (max-width: 480px) {
         .thanks-content {
           padding: 2rem 1.5rem;
@@ -186,6 +198,25 @@
 
         .thanks-message {
           font-size: 1rem;
+        }
+
+        .contact-detail {
+          display: block;
+          text-align: center;
+        }
+
+        .contact-detail strong {
+          display: block;
+          margin-bottom: 0.25rem;
+        }
+
+        .phone-number {
+          display: block;
+          font-weight: normal;
+        }
+
+        .contact-info {
+          text-align: center;
         }
       }
     </style>
@@ -226,7 +257,7 @@
               この度は、OGT！人材にお問い合わせいただき、誠にありがとうございます。
             </p>
             <p>
-              いただいたご相談内容を確認の上、<strong>1営業日以内</strong>に担当者よりご連絡いたします。
+              いただいたご相談内容を確認の上、<strong>2~3営業日以内</strong>に担当者よりご連絡いたします。
             </p>
           </div>
 
@@ -244,7 +275,10 @@
           <div class="contact-info">
             <h4>緊急のご連絡について</h4>
             <p>お急ぎの案件がございましたら、以下までお電話ください：</p>
-            <p><strong>採用コンサルティング部：</strong> 03-XXXX-XXXX</p>
+            <p class="contact-detail">
+              <strong>採用コンサルティング部：</strong
+              ><span class="phone-number">03-XXXX-XXXX</span>
+            </p>
             <p><strong>受付時間：</strong> 平日 9:00-18:00</p>
           </div>
 

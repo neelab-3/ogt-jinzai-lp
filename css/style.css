@@ -181,6 +181,14 @@ body {
   margin-right: auto;
 }
 
+.hero-buttons {
+  margin-top: 2rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
 .btn {
   display: inline-block;
   padding: 1rem 2.5rem;
@@ -329,12 +337,13 @@ body {
 }
 
 .category-image {
-  width: 120px;
-  height: 120px;
+  max-width: 100%;
+  width: auto;
+  height: auto;
   margin: 0 auto 1.5rem;
   border-radius: 12px;
-  object-fit: cover;
   box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  display: block;
 }
 
 .category-card h3 {
@@ -630,6 +639,10 @@ textarea.form-control {
   
   .hero-text {
     text-align: center;
+  }
+  
+  .hero-buttons {
+    justify-content: center;
   }
   
   .hero h1 {
@@ -958,6 +971,10 @@ textarea.form-control {
   
   .hero p {
     font-size: 1.15rem;
+  }
+  
+  .hero-buttons {
+    justify-content: center;
   }
 }
 
