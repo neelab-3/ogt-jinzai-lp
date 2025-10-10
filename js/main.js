@@ -1,6 +1,152 @@
 // Team B - Professional & Trust JavaScript
 // プロフェッショナルで信頼感のあるインタラクション
 
+// ========================================
+// WordPress API Configuration
+// ========================================
+const WORDPRESS_BASE_URL = 'https://ogtjinzai.com/wp-content/themes/ogt-jinzai';
+
+// デバッグモード（開発時のログ出力）
+const DEBUG_MODE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+
+/**
+ * CSRFトークンを取得
+ */
+async function getCSRFToken() {
+    try {
+        if (DEBUG_MODE) {
+            console.log('[DEBUG] CSRFトークン取得開始:', `${WORDPRESS_BASE_URL}/get-csrf-token.php`);
+        }
+
+        const response = await fetch(`${WORDPRESS_BASE_URL}/get-csrf-token.php`, {
+            method: 'GET',
+            credentials: 'include', // Cookie送受信
+        });
+
+        if (!response.ok) {
+            throw new Error('CSRFトークンの取得に失敗しました');
+        }
+
+        const data = await response.json();
+
+        if (DEBUG_MODE) {
+            console.log('[DEBUG] CSRFトークン取得成功:', data);
+        }
+
+        if (!data.success || !data.csrf_token) {
+            throw new Error('CSRFトークンが無効です');
+        }
+
+        return data.csrf_token;
+    } catch (error) {
+        console.error('CSRF token error:', error);
+        throw error;
+    }
+}
+
+/**
+ * WordPress統合版フォーム送信
+ */
+async function submitContactFormToWordPress(form) {
+    const messageDiv = document.getElementById('form-message');
+
+    try {
+        // 1. CSRFトークン取得
+        const csrfToken = await getCSRFToken();
+
+        // 2. フォームデータ取得
+        const formData = new FormData(form);
+
+        // 3. Honeypotチェック（ボット対策）
+        const websiteField = formData.get('website');
+        const urlField = formData.get('url');
+        if (websiteField || urlField) {
+            throw new Error('Spam detected');
+        }
+
+        // 4. チェックボックスの値を取得
+        const challenges = [];
+        formData.forEach((value, key) => {
+            if (key === 'challenges') {
+                challenges.push(value);
+            }
+        });
+
+        // 5. URLSearchParamsでフォームデータを作成
+        const params = new URLSearchParams();
+        params.append('companyName', formData.get('company') || '');
+        params.append('contactName', formData.get('name') || '');
+        params.append('email', formData.get('email') || '');
+        params.append('phone', formData.get('phone') || '');
+        params.append('inquiryType', '企業パートナーLP経由');
+        params.append('subject', `採用課題: ${challenges.join(', ')}`);
+
+        // 6. メッセージを構築
+        let fullMessage = '';
+        if (challenges.length > 0) {
+            fullMessage += `【採用課題】\n${challenges.join('\n')}\n`;
+        }
+
+        const additionalMessage = formData.get('message');
+        if (additionalMessage) {
+            fullMessage += `\n【詳細】\n${additionalMessage}`;
+        }
+
+        params.append('message', fullMessage);
+        params.append('csrf_token', csrfToken);
+
+        if (DEBUG_MODE) {
+            console.log('[DEBUG] フォーム送信開始:', `${WORDPRESS_BASE_URL}/contact-handler.php`);
+            console.log('[DEBUG] 送信データ:', Object.fromEntries(params));
+        }
+
+        // 7. フォーム送信
+        const response = await fetch(`${WORDPRESS_BASE_URL}/contact-handler.php`, {
+            method: 'POST',
+            credentials: 'include', // Cookie送受信
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: params.toString(),
+        });
+
+        const data = await response.json();
+
+        if (DEBUG_MODE) {
+            console.log('[DEBUG] フォーム送信レスポンス:', data);
+        }
+
+        // 8. レスポンス処理
+        if (data.success) {
+            // 成功メッセージ表示
+            messageDiv.textContent = data.message || 'お問い合わせを受け付けました。\n確認メールをお送りしましたのでご確認ください。';
+            messageDiv.className = 'form-message success show';
+
+            // フォームをリセット
+            form.reset();
+
+            // 5秒後にメッセージを消す
+            setTimeout(() => {
+                messageDiv.className = 'form-message';
+            }, 5000);
+        } else {
+            // エラーメッセージ表示
+            const errorMessage = data.errors?.join('\n') || '送信に失敗しました';
+            messageDiv.textContent = errorMessage;
+            messageDiv.className = 'form-message error show';
+        }
+    } catch (error) {
+        console.error('Contact form submission error:', error);
+        messageDiv.textContent = 'エラーが発生しました。もう一度お試しください。';
+        messageDiv.className = 'form-message error show';
+        throw error;
+    }
+}
+
+// ========================================
+// Main Application
+// ========================================
+
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize GSAP if available
     if (typeof gsap !== 'undefined') {
@@ -13,28 +159,47 @@ document.addEventListener('DOMContentLoaded', function() {
     // Form validation and enhancement
     const form = document.getElementById('contact-form');
     const submitButton = document.querySelector('.btn-submit');
-    
+
     if (form) {
         // Add form validation
-        form.addEventListener('submit', function(e) {
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+
             if (!validateForm()) {
-                e.preventDefault();
                 return false;
             }
-            
+
             // Add loading state to submit button
             submitButton.classList.add('loading');
             submitButton.textContent = '送信中...';
             submitButton.disabled = true;
+
+            const messageDiv = document.getElementById('form-message');
+            messageDiv.textContent = '';
+            messageDiv.className = 'form-message';
+
+            try {
+                // WordPress API連携でフォーム送信
+                await submitContactFormToWordPress(form);
+            } catch (error) {
+                console.error('Form submission error:', error);
+                messageDiv.textContent = 'エラーが発生しました。もう一度お試しください。';
+                messageDiv.className = 'form-message error show';
+            } finally {
+                // 送信ボタンを再有効化
+                submitButton.disabled = false;
+                submitButton.classList.remove('loading');
+                submitButton.textContent = 'お問い合わせを送信';
+            }
         });
-        
+
         // Real-time validation
         const requiredFields = form.querySelectorAll('[required]');
         requiredFields.forEach(field => {
             field.addEventListener('blur', function() {
                 validateField(this);
             });
-            
+
             field.addEventListener('input', function() {
                 clearFieldError(this);
             });
@@ -85,11 +250,10 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Professional header behavior
     const header = document.querySelector('.header');
-    let lastScrollTop = 0;
-    
+
     window.addEventListener('scroll', function() {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        
+
         if (scrollTop > 100) {
             header.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
             header.style.backdropFilter = 'blur(10px)';
@@ -97,8 +261,6 @@ document.addEventListener('DOMContentLoaded', function() {
             header.style.backgroundColor = 'var(--bg-white)';
             header.style.backdropFilter = 'none';
         }
-        
-        lastScrollTop = scrollTop;
     });
     
     // Form accessibility enhancements

@@ -553,15 +553,9 @@
             <form
               id="contact-form"
               name="contact"
-              method="POST"
-              action="thanks.html"
-              data-netlify="true"
               role="form"
               aria-labelledby="contact-title"
             >
-              <!-- Netlify form detection -->
-              <input type="hidden" name="form-name" value="contact" />
-
               <div class="form-group">
                 <label for="company"
                   >会社名
@@ -714,11 +708,49 @@
                 >
               </div>
 
+              <!-- Honeypot（ボット対策） - CSSで非表示 -->
+              <div class="form-group honeypot" style="position: absolute; left: -9999px;">
+                <label for="website">ウェブサイト（入力しないでください）</label>
+                <input
+                  type="text"
+                  id="website"
+                  name="website"
+                  tabindex="-1"
+                  autocomplete="off"
+                />
+              </div>
+              <div class="form-group honeypot" style="position: absolute; left: -9999px;">
+                <label for="url">URL（入力しないでください）</label>
+                <input
+                  type="text"
+                  id="url"
+                  name="url"
+                  tabindex="-1"
+                  autocomplete="off"
+                />
+              </div>
+
+              <div class="form-group checkbox-privacy">
+                <label>
+                  <input type="checkbox" name="privacy" id="privacy" required />
+                  <span>
+                    <a
+                      href="https://ogtjinzai.com/privacy/"
+                      class="privacy-link"
+                      target="_blank"
+                      rel="noopener noreferrer">プライバシーポリシー</a
+                    >に同意します
+                  </span>
+                </label>
+              </div>
+
               <div class="form-submit">
-                <button type="submit" class="btn btn-primary btn-submit">
+                <button type="submit" class="btn btn-primary btn-submit" id="submit-btn">
                   お問い合わせを送信
                 </button>
               </div>
+
+              <div id="form-message" class="form-message"></div>
 
               <p
                 style="
