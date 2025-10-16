@@ -49,7 +49,7 @@ npx serve
 └── assets/         # 人材カテゴリー画像
     ├── senior_soul.png
     ├── leading_ladies.png
-    ├── top-guns_v3.png
+    ├── top-guns.png
     └── language_lions.png
 ```
 
