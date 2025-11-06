@@ -1,0 +1,1 @@
+const a=document.querySelectorAll(".fade-in-up");function t(){a.forEach((e,i)=>{const o=e.getBoundingClientRect().top,d=e.getBoundingClientRect().bottom,s=window.innerHeight;o<s*.9&&d>0&&setTimeout(()=>{e.classList.add("visible")},i*50)})}let n=!1;function c(){n||(window.requestAnimationFrame(()=>{t(),n=!1}),n=!0)}window.addEventListener("scroll",c);t();
